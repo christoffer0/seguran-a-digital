@@ -4,11 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Falando times</title>
-  <!-- Tailwind via CDN para facilitar uso no GitHub Pages -->
+  <!-- Tailwind via CDN (funciona no GitHub Pages) -->
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-50 text-gray-900 min-h-screen">
-  <!-- Header -->
+
+  <!-- HEADER -->
   <header class="bg-white shadow">
     <div class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between">
       <h1 class="text-2xl font-extrabold">Falando times</h1>
@@ -20,9 +21,10 @@
     </div>
   </header>
 
-  <!-- Main -->
+  <!-- CONTEÚDO PRINCIPAL -->
   <main class="max-w-6xl mx-auto p-6 space-y-12">
-    <!-- Home com 4 Fotos -->
+
+    <!-- HOME COM 4 FOTOS -->
     <section id="home">
       <h2 class="text-xl font-bold mb-4">Destaques</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -45,14 +47,16 @@
       </div>
     </section>
 
-    <!-- Transmissão -->
+    <!-- TRANSMISSÃO -->
     <section id="transmissao">
       <h2 class="text-xl font-bold mb-4">Transmissão ao vivo</h2>
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Player -->
+
+        <!-- PLAYER -->
         <div class="lg:col-span-2 bg-white rounded-xl shadow overflow-hidden">
-          <div class="w-full h-64 bg-black flex items-center justify-center text-white text-sm">
-            Coloque aqui o iframe da transmissão (YouTube, TV, etc)
+          <div class="w-full h-64 bg-black">
+            <!-- Exemplo de iframe do YouTube (troque pelo seu) -->
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allowfullscreen></iframe>
           </div>
           <div class="p-4">
             <h3 class="font-semibold">Descrição da transmissão</h3>
@@ -60,7 +64,7 @@
           </div>
         </div>
 
-        <!-- Patrocinadores -->
+        <!-- PATROCINADORES -->
         <aside class="bg-white rounded-xl shadow p-4">
           <h3 class="font-semibold mb-3">Patrocinadores</h3>
           <div class="space-y-3">
@@ -81,21 +85,19 @@
       </div>
     </section>
 
-    <!-- Formulário -->
+    <!-- FORMULÁRIO -->
     <section id="formulario">
       <h2 class="text-xl font-bold mb-4">Escolha um time</h2>
       <div class="bg-white p-6 rounded-xl shadow">
-        <form class="space-y-4">
+        <form id="formTimes" class="space-y-4">
           <div class="flex flex-col sm:flex-row gap-4">
             <label class="flex items-center gap-2">
-              <input type="radio" name="team" value="team1" onclick="mostrarTime('team1')">
-              Time 1
+              <input type="radio" name="team" value="team1"> Time 1
             </label>
             <label class="flex items-center gap-2">
-              <input type="radio" name="team" value="team2" onclick="mostrarTime('team2')">
-              Time 2
+              <input type="radio" name="team" value="team2"> Time 2
             </label>
-            <button type="button" onclick="limpar()" class="text-sm underline">Limpar</button>
+            <button type="button" id="btnLimpar" class="text-sm underline">Limpar</button>
           </div>
 
           <div>
@@ -108,40 +110,9 @@
       </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="text-center py-8 text-sm text-gray-500">
-      © 2025 Falando times — Feito com carinho.
+      © <span id="ano"></span> Falando times — Feito com carinho.
     </footer>
+
   </main>
-
-  <!-- Script -->
-  <script>
-    const times = {
-      team1: ["Jogador A", "Jogador B", "Jogador C", "Jogador D"],
-      team2: ["Jogador E", "Jogador F", "Jogador G", "Jogador H"],
-    };
-
-    function mostrarTime(time) {
-      const div = document.getElementById("jogadores");
-      div.innerHTML = "";
-      const ul = document.createElement("ul");
-      ul.className = "list-disc pl-5 text-gray-800";
-
-      times[time].forEach(function(jogador) {
-        const li = document.createElement("li");
-        li.textContent = jogador;
-        ul.appendChild(li);
-      });
-
-      div.appendChild(ul);
-    }
-
-    function limpar() {
-      const radios = document.querySelectorAll('input[name="team"]');
-      radios.forEach(r => r.checked = false);
-      const div = document.getElementById("jogadores");
-      div.textContent = "Escolha um time para ver os jogadores.";
-    }
-  </script>
-</body>
-</html>
